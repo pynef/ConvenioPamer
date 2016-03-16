@@ -1,0 +1,220 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Educativo">
+        <meta name="author" content="Nefi">
+
+        <link rel="shortcut icon" href="{% static 'iconos/icpna.png' %}">
+
+        <title>ICPNA</title>
+
+        <!--Morris Chart CSS -->
+		    <link rel="stylesheet" href="{% static 'dist/plugins/morris/morris.css' %}">
+
+        <!-- App css -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'dist/css/core.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'dist/css/components.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'dist/css/icons.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'dist/css/pages.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'dist/css/menu.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'dist/css/responsive.css' %}" rel="stylesheet" type="text/css" />
+
+        <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="{% static 'dist/js/modernizr.min.js' %}"></script>
+
+    </head>
+
+
+    <body class="fixed-left">
+
+        <!-- Begin page -->
+        <div id="wrapper">
+
+            <!-- Top Bar Start -->
+            <div class="topbar">
+
+                <!-- LOGO -->
+                <div class="topbar-left">
+                    <a href="{% url 'pamer' %}" class="logo"><span>Convenio<span>Pamer</span></span><i class="zmdi zmdi-layers"></i></a>
+                </div>
+
+                <!-- Button mobile view to collapse sidebar menu -->
+                <div class="navbar navbar-default" role="navigation">
+                  <!-- start container -->
+                    <!-- <div class="container">
+
+                        <ul class="nav navbar-nav navbar-left">
+                            <li>
+                                <button class="button-menu-mobile open-left">
+                                    <i class="zmdi zmdi-menu"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <h4 class="page-title">Dashboard</h4>
+                            </li>
+                        </ul>
+
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+
+                                <div class="notification-box">
+                                    <ul class="list-inline m-b-0">
+                                        <li>
+                                            <a href="javascript:void(0);" class="right-bar-toggle">
+                                                <i class="zmdi zmdi-notifications-none"></i>
+                                            </a>
+                                            <div class="noti-dot">
+                                                <span class="dot"></span>
+                                                <span class="pulse"></span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </li>
+                            <li class="hidden-xs">
+                                <form role="search" class="app-search">
+                                    <input type="text" placeholder="Search..."
+                                           class="form-control">
+                                    <a href=""><i class="fa fa-search"></i></a>
+                                </form>
+                            </li>
+                        </ul>
+
+                    </div> -->
+                    <!-- end container -->
+                </div><!-- end navbar -->
+            </div>
+            <!-- Top Bar End -->
+
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="left side-menu">
+                <div class="sidebar-inner slimscrollleft">
+
+                    <!-- User -->
+                    <div class="user-box">
+                        <div class="user-img">
+                            <img src="{% static 'iconos/avatar.png' %}" alt="user-img" title="Mat Helme" class="img-circle img-thumbnail img-responsive">
+                            <div class="user-status offline"><i class="zmdi zmdi-dot-circle"></i></div>
+                        </div>
+                        <h5><a href="#">{{user.first_name}} {{user.last_name}}</a> </h5>
+                        <ul class="list-inline">
+                            <li>
+                                <!-- <a href="#" >
+                                    <i class="zmdi zmdi-settings">a</i>
+                                </a> -->
+                            </li>
+
+                            <li>
+                                <a href="{% url 'logout' %}" class="text-custom">
+                                    <i class="zmdi zmdi-power"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End User -->
+
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu">
+                        <ul>
+                        	<li class="text-muted menu-title">Navigation</li>
+
+                            <li>
+                                <a href="{% url 'pamer' %}" class="waves-effect active"><i class="zmdi zmdi-view-dashboard"></i> <span> Home </span> </a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'asistencia_docente' %}" class="waves-effect"><i class="zmdi zmdi-format-underlined"></i> <span> Marcado de Asistencia </span> </a>
+                            </li>
+
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!-- Sidebar -->
+                    <div class="clearfix"></div>
+
+                </div>
+
+            </div>
+            <!-- Left Sidebar End -->
+
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+                        {% block container %}
+                        {% endblock container %}
+
+
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+
+                <footer class="footer text-right">
+                    2016 © ICPNA Region Centro.
+                </footer>
+
+            </div>
+
+
+            <!-- ============================================================== -->
+            <!-- End Right content here -->
+            <!-- ============================================================== -->
+
+        </div>
+        <!-- END wrapper -->
+
+
+
+        <script>
+            var resizefunc = [];
+        </script>
+
+        <!-- jQuery  -->
+        <script src="{% static 'dist/js/jquery.min.js' %}"></script>
+        <script src="{% static 'dist/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'dist/js/detect.js' %}"></script>
+        <script src="{% static 'dist/js/fastclick.js' %}"></script>
+        <script src="{% static 'dist/js/jquery.slimscroll.js' %}"></script>
+        <script src="{% static 'dist/js/jquery.blockUI.js' %}"></script>
+        <script src="{% static 'dist/js/waves.js' %}"></script>
+        <script src="{% static 'dist/js/jquery.nicescroll.js' %}"></script>
+        <script src="{% static 'dist/js/jquery.scrollTo.min.js' %}"></script>
+
+        <!-- KNOB JS -->
+        <!--[if IE]>
+        <script type="text/javascript" src="{% static 'dist/plugins/jquery-knob/excanvas.js' %}"></script>
+        <![endif]-->
+        <script src="{% static 'dist/plugins/jquery-knob/jquery.knob.js' %}"></script>
+
+        <!--Morris Chart-->
+    		<script src="{% static 'dist/plugins/morris/morris.min.js' %}"></script>
+    		<script src="{% static 'dist/plugins/raphael/raphael-min.js' %}"></script>
+
+        <!-- Dashboard init -->
+        <script src="assets/pages/jquery.dashboard.js"></script>
+
+        <!-- App js -->
+        <script src="{% static 'dist/js/jquery.core.js' %}"></script>
+        <script src="{% static 'dist/js/jquery.app.js' %}"></script>
+
+    </body>
+</html>

@@ -1,0 +1,48 @@
+{% extends 'layouts/base.html' %}
+{% block container %}
+<div class="row">
+
+    <div class="col-lg-4 col-md-4">
+	    <div class="card-box">
+	            <div class="dropdown pull-right">
+	                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
+	                    <i class="zmdi zmdi-more-vert"></i>
+	                </a>
+	            </div>
+
+	      <h4 class="header-title m-t-0 m-b-30">CURSOS</h4>
+
+	        <table class="table m-0">
+	            <thead>
+	                <tr>
+	                    <th class="texto-center">#</th>
+	                    <th class="texto-center">Nombre</th>
+	                    <th class="texto-center">Detalle</th>
+	                </tr>																														
+	            </thead>
+	            <tbody>
+	              {% for curso in cursos %}
+	                <tr>
+	                    <td class="texto-center">{{ curso.id }}</td>
+	                    <td class="texto-center">{{ curso }}</td>
+	                    <td class="texto-center">
+		                	<a href="{% url 'asistencia_docente_id' curso.id %}">
+		                		<i class="ti-angle-double-right"></i>
+		                	</a>
+	                	</td>
+	                </tr>
+	              {% endfor %}
+	            </tbody>
+	        </table>
+
+	    </div>
+    </div>
+
+<!--     <div class="col-lg-8 col-md-8">
+    <div class="card-box">
+
+    </div>
+    </div> -->
+
+</div>
+{% endblock container %}

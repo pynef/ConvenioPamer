@@ -1,0 +1,99 @@
+{% extends 'layouts/base.html' %}
+{% load staticfiles %}
+{% block container %}
+<div class="row">
+
+    <div class="col-lg-4 col-md-4">
+	    <div class="card-box">
+	            <div class="dropdown pull-right">
+	                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
+	                    <i class="zmdi zmdi-more-vert"></i>
+	                </a>
+	            </div>
+
+	      <h4 class="header-title m-t-0 m-b-30">CURSOS</h4>
+
+	        <table class="table m-0">
+	            <thead>
+	                <tr>
+	                    <th class="texto-center">#</th>
+	                    <th class="texto-center">Nombre</th>
+	                    <th class="texto-center">Detalle</th>
+	                </tr>
+	            </thead>
+	            <tbody>
+	              {% for curso in cursos %}
+	                <tr>
+	                    <td class="texto-center">{{ curso.id }}</td>
+	                    <td class="texto-center">{{ curso }}</td>
+	                    <td class="texto-center">
+		                	<a href="{% url 'asistencia_docente_id' curso.id %}">
+		                		<i class="ti-angle-double-right"></i>
+		                	</a>
+	                	</td>
+	                </tr>
+	              {% endfor %}
+	            </tbody>
+	        </table>
+
+	    </div>
+    </div>
+
+    <div class="col-lg-8 col-md-8">
+    <div class="card-box">
+            <div class="dropdown pull-right">
+                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
+                    <i class="zmdi zmdi-more-vert"></i>
+                </a>
+            </div>
+
+      <h4 class="header-title m-t-0 m-b-30">Registro de Asistencia  :::  {{ingreso.ofertaacademica_id}}</h4>
+
+            <table class="table table m-0">
+            	<thead>
+	                <tr>
+	                    <th class="">Estado</th>
+	                    <th class="">Hora</th>
+	                </tr>
+	            </thead>
+	            <tbody>
+                    <tr>
+                        <th scope="row">INGRESO</th>
+                        <td>
+                        	{% if ingreso.ingreso_hora == None %}
+                        		<!-- <button type="button" class="btn btn-sm btn-success btn-rounded w-md waves-effect waves-light m-b-5">
+                              Registro
+                            </button> -->
+                            <a href="{% url 'asistencia_docente_ingreso' ofertaAcademica.id %}"><img src="{% static 'img/logos/borrar.png' %}" /></a>
+                        	{% else %}
+                        		{{ingreso.ingreso_hora}}
+                        	{% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">SALIDA</th>
+                        <td>
+                          {% if ingreso.salida_hora == None %}
+                        	<!--   <button type="button" class="btn btn-sm  btn-danger btn-rounded w-md waves-effect waves-light m-b-5">
+                              Salida
+                            </button> -->
+                            
+	                            {% if ingreso.ingreso_hora == None %}
+	                        		<!-- <button type="button" class="btn btn-sm btn-success btn-rounded w-md waves-effect waves-light m-b-5">
+	                              Registro
+	                            </button> -->
+	                            ------
+	                        	{% else %}
+	                        		<a href="{% url 'asistencia_docente_salida' ingreso.id %}"><img src="{% static 'img/logos/borrar.png' %}" /></a>
+	                        	{% endif %}
+                          {% else %}
+                            {{ingreso.salida_hora}}
+                          {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+    </div><!-- end col -->
+</div>
+{% endblock container %}
